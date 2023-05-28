@@ -1,0 +1,191 @@
+<Window x:Class="testWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="WiFi Passwords Grabber"
+        WindowStyle="None"
+        Width="600"
+        Height="500"
+        ResizeMode="NoResize"
+>
+
+    <Grid ShowGridLines="False">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#461076" Offset="0" />
+                <GradientStop Color="#28448C" Offset="1" />
+            </LinearGradientBrush>
+            
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="5" />
+
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Label Name="TitleLabel"
+               Grid.Column="0"
+               Grid.Row="0"
+               Grid.ColumnSpan="11"
+               Content="WiFi Passwords Grabber"
+               Background="Transparent"
+               Foreground="White"
+               FontSize="20"
+               FontWeight="Bold"
+               FontFamily="RobotoMono-Regular"
+               VerticalContentAlignment="Center"
+        ></Label>
+        <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11" BorderBrush="White" BorderThickness="0,0,0,1" />
+
+
+
+        <Button
+            Click="Button_Close"
+            Grid.Column="9"
+            Grid.Row="0"
+            Content="X"
+            Width="30"
+            Height="30"
+            HorizontalAlignment="Right"
+            FontSize="15"
+        ></Button>  
+        
+        <Button
+            Grid.Column="9"
+            Grid.Row="0"
+            Content="[]"
+            Width="30"
+            Height="30"
+            HorizontalAlignment="Center"
+            VerticalContentAlignment="Center"
+            FontSize="15"
+            FontWeight="Bold"
+            Click="FullScreenButton_Click"
+        ></Button> 
+        <Button
+            Grid.Column="9"
+            Grid.Row="0"
+            Content="-"
+            Width="30"
+            Height="30"
+            HorizontalAlignment="Left"
+            FontSize="20"
+            FontWeight="Bold"
+            Click="Button_Minimize"
+            ></Button>
+        
+        <Label Name="Label_WifiList"
+               Grid.Column="0"
+               Grid.Row="2"
+               Grid.ColumnSpan="11"
+               Content="WiFi List"
+               Background="Transparent"
+               Foreground="White"
+               FontSize="20"
+               FontWeight="Bold"
+               FontFamily="RobotoMono-Regular"
+               VerticalContentAlignment="Center"
+               
+        ></Label>
+        
+        <ComboBox Name="ComboBox_WifiList"
+                  Grid.Column="0"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="11"
+                  Background="Transparent"
+                  Foreground="White"
+                  FontSize="15"
+                  FontWeight="Bold"
+                  FontFamily="RobotoMono-Regular"
+                  VerticalContentAlignment="Center"
+                  
+        ></ComboBox>
+        
+        
+        <Label Name="Label_Password"
+               Grid.Column="0"
+               Grid.Row="5"
+               Grid.ColumnSpan="11"
+               Content="Password"
+               Background="Transparent"
+               Foreground="White"
+               FontSize="20"
+               FontWeight="Bold"
+               FontFamily="RobotoMono-Regular"
+               VerticalContentAlignment="Center"
+               
+        ></Label>
+        
+        <TextBox Name="TextBox_Password"
+                 Grid.Column="0"
+                 Grid.Row="6"
+                 Grid.ColumnSpan="11"
+                 Background="Transparent"
+                 Foreground="White"
+                 FontSize="15"
+                 FontWeight="Bold"
+                 FontFamily="RobotoMono-Regular"
+                 VerticalContentAlignment="Center"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 Text=""
+        ></TextBox>
+        
+        <Button Name="Button_Grab"
+                Grid.Column="0"
+                Grid.Row="8"
+                Grid.ColumnSpan="5"
+                Content="Grab"
+                Background="Transparent"
+                Foreground="White"
+                FontSize="15"
+                FontWeight="Bold"
+                FontFamily="RobotoMono-Regular"
+                VerticalContentAlignment="Center"
+                MouseEnter="btn_hover_grab"
+                MouseLeave="btn_unhover_grab"
+        ></Button>
+        
+        <Button Name="Button_Advanced"
+                Grid.Column="6"
+                Grid.Row="8"
+                Grid.ColumnSpan="4"
+                Content="Advanced"
+                Background="Transparent"
+                Foreground="White"
+                FontSize="15"
+                FontWeight="Bold"
+                FontFamily="RobotoMono-Regular"
+                VerticalContentAlignment="Center"
+                MouseEnter="btn_hover_advanced"
+                MouseLeave="btn_unhover_advanced">
+        </Button>
+        
+
+        
+        
+    </Grid>
+    
+</Window>
