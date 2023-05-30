@@ -6,8 +6,7 @@
         WindowStyle="None"
         Width="600"
         Height="500"
-        ResizeMode="NoResize"
->
+        ResizeMode="NoResize">
 
     <Grid ShowGridLines="False">
         <Grid.Background>
@@ -15,7 +14,7 @@
                 <GradientStop Color="#461076" Offset="0" />
                 <GradientStop Color="#28448C" Offset="1" />
             </LinearGradientBrush>
-            
+
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -31,12 +30,12 @@
             <ColumnDefinition Width="5" />
 
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -44,7 +43,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Label Name="TitleLabel"
                Grid.Column="0"
                Grid.Row="0"
@@ -55,10 +54,9 @@
                FontSize="20"
                FontWeight="Bold"
                FontFamily="RobotoMono-Regular"
-               VerticalContentAlignment="Center"
-        ></Label>
+               VerticalContentAlignment="Center">
+        </Label>
         <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11" BorderBrush="White" BorderThickness="0,0,0,1" />
-
 
 
         <Button
@@ -69,9 +67,9 @@
             Width="30"
             Height="30"
             HorizontalAlignment="Right"
-            FontSize="15"
-        ></Button>  
-        
+            FontSize="15">
+        </Button>
+
         <Button
             Grid.Column="9"
             Grid.Row="0"
@@ -82,8 +80,8 @@
             VerticalContentAlignment="Center"
             FontSize="15"
             FontWeight="Bold"
-            Click="FullScreenButton_Click"
-        ></Button> 
+            Click="FullScreenButton_Click">
+        </Button>
         <Button
             Grid.Column="9"
             Grid.Row="0"
@@ -93,10 +91,10 @@
             HorizontalAlignment="Left"
             FontSize="20"
             FontWeight="Bold"
-            Click="Button_Minimize"
-            ></Button>
-        
-        <Label Name="Label_WifiList"
+            Click="Button_Minimize">
+        </Button>
+
+        <Label Name="LabelWifiList"
                Grid.Column="0"
                Grid.Row="2"
                Grid.ColumnSpan="11"
@@ -106,54 +104,56 @@
                FontSize="20"
                FontWeight="Bold"
                FontFamily="RobotoMono-Regular"
-               VerticalContentAlignment="Center"
-               
-        ></Label>
-        
-        <ComboBox Name="ComboBox_WifiList"
+               VerticalContentAlignment="Center">
+        </Label>
+
+        <ComboBox x:Name="NetworkComboBox"
                   Grid.Column="0"
                   Grid.Row="3"
                   Grid.ColumnSpan="11"
                   Background="Transparent"
-                  Foreground="White"
+                  Foreground="Black"
                   FontSize="15"
-                  FontWeight="Bold"
                   FontFamily="RobotoMono-Regular"
-                  VerticalContentAlignment="Center"
-                  
-        ></ComboBox>
-        
-        
-        <Label Name="Label_Password"
+                  VerticalContentAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+
+        <Label Name="LabelPassword"
                Grid.Column="0"
                Grid.Row="5"
                Grid.ColumnSpan="11"
-               Content="Password"
+               Content="Grabbed password"
                Background="Transparent"
                Foreground="White"
                FontSize="20"
                FontWeight="Bold"
                FontFamily="RobotoMono-Regular"
-               VerticalContentAlignment="Center"
-               
-        ></Label>
-        
-        <TextBox Name="TextBox_Password"
+               VerticalContentAlignment="Center">
+        </Label>
+
+        <TextBox Name="TextBoxPassword"
                  Grid.Column="0"
                  Grid.Row="6"
                  Grid.ColumnSpan="11"
                  Background="Transparent"
                  Foreground="White"
-                 FontSize="15"
+                 FontSize="25"
                  FontWeight="Bold"
                  FontFamily="RobotoMono-Regular"
                  VerticalContentAlignment="Center"
+                 HorizontalContentAlignment="Center"
                  IsReadOnly="True"
                  TextWrapping="Wrap"
-                 Text=""
-        ></TextBox>
-        
-        <Button Name="Button_Grab"
+                 Text="">
+        </TextBox>
+
+        <Button Name="ButtonGrab"
                 Grid.Column="0"
                 Grid.Row="8"
                 Grid.ColumnSpan="5"
@@ -166,9 +166,10 @@
                 VerticalContentAlignment="Center"
                 MouseEnter="btn_hover_grab"
                 MouseLeave="btn_unhover_grab"
-        ></Button>
-        
-        <Button Name="Button_Advanced"
+                Click="Button_Grab_OnClick">
+        </Button>
+
+        <Button Name="ButtonAdvanced"
                 Grid.Column="6"
                 Grid.Row="8"
                 Grid.ColumnSpan="4"
@@ -180,12 +181,12 @@
                 FontFamily="RobotoMono-Regular"
                 VerticalContentAlignment="Center"
                 MouseEnter="btn_hover_advanced"
-                MouseLeave="btn_unhover_advanced">
+                MouseLeave="btn_unhover_advanced"
+                Click="ShowAdvanced"
+                >
         </Button>
-        
 
-        
-        
+
     </Grid>
-    
+
 </Window>
