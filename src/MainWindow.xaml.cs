@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System;
 using System.Diagnostics;
 
-namespace testWpf
+namespace WifiGrabberGRAPHIC
 {
     public partial class MainWindow
     {
