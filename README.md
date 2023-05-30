@@ -3,7 +3,14 @@
 > This is program for showing passwords of all wifi networks connected to computer previously. If you don't have wifi card in your device it should not write anything.
 
 ## Alpha version
-Currently this is alpha of this program. This is just a empty layout.
+Currently this is alpha of this program. It works, but you may cause some problems or dysfunctions. Patiences advised.
+
+### TODO
+1. Improve styles (boooring)
+2. Change layout
+3. Add "advanced" functions
+4. Add (additonal) settings option
+5. Continue idea with bruteforcing passwords (legal purposes)
 
 ## License
 
