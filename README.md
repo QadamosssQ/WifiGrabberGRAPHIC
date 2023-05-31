@@ -1,6 +1,14 @@
 # WiFi_passwords_grabber (Graphic edition)
-> This is the same app as WiFi_passwords_grabber, but with graphic layout made in wpf.
-> This is program for showing passwords of all wifi networks connected to computer previously. If you don't have wifi card in your device it should not write anything.
+Welcome to the WiFi Passwords Grabber, now with an enhanced graphical layout built using WPF.
+
+> This program allows you to conveniently view passwords for all the WiFi networks previously connected to your computer. If your device lacks a WiFi card, the program will not display any information.
+
+> Simply select the WiFi network you're interested in, and with a single click on the "Grab" button, you'll retrieve its password. For more advanced options, click on the "Advanced" button to access a message box containing > additional information that can be obtained.
+
+
+## How to run?
+It is simple, just download this repository and go to release folder and run .exe file.
+
 
 ## Alpha version
 Currently this is alpha of this program. It works, but you may cause some problems or dysfunctions. Patiences advised.
@@ -8,8 +16,8 @@ Currently this is alpha of this program. It works, but you may cause some proble
 ### TODO
 1. Improve styles (boooring)
 2. Change layout
-3. Add "advanced" functions
-4. Add (additonal) settings option
+3. Improve "advanced" section
+4. Add settings option that allows you to get ip-s and others
 5. Continue idea with bruteforcing passwords (legal purposes)
 
 ## License
