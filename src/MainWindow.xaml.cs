@@ -115,6 +115,7 @@ namespace WifiGrabberGRAPHIC
             if (selectedNetwork != null)
             {
                 MessageBox.Show(show_wifi(selectedNetwork), "Advanced show");
+                GridPageMain.Visibility = Visibility.Hidden;
             }
         }
 
