@@ -1,5 +1,4 @@
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System;
 using System.Diagnostics;
@@ -18,7 +17,7 @@ namespace WifiGrabberGRAPHIC
             TitleLabel.MouseLeftButtonUp += TitleLabel_MouseLeftButtonUp;
         }
 
-        private bool _isDragging = false;
+        private bool _isDragging;
         private double _offsetX, _offsetY;
 
         private void TitleLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,7 +55,6 @@ namespace WifiGrabberGRAPHIC
             WindowState = WindowState.Minimized;
         }
 
-
         private void FullScreenButton_Click(object sender, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Maximized)
@@ -77,30 +75,48 @@ namespace WifiGrabberGRAPHIC
             }
         }
 
-        private void btn_hover_advanced(object sender, MouseEventArgs e)
+        private void HoverAdvanced(object sender, MouseEventArgs e)
         {
             ButtonAdvanced.Foreground =
                 new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(70, 16, 118));
         }
 
-        private void btn_unhover_advanced(object sender, MouseEventArgs e)
+        private void BtnLandAdvanced(object sender, MouseEventArgs e)
         {
             ButtonAdvanced.Foreground =
                 new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
         }
 
-        private void btn_hover_grab(object sender, MouseEventArgs e)
+        private void BtnHoverGrab(object sender, MouseEventArgs e)
         {
             ButtonGrab.Foreground =
                 new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(70, 16, 118));
         }
 
-        private void btn_unhover_grab(object sender, MouseEventArgs e)
+        private void BtnLandGrab(object sender, MouseEventArgs e)
         {
             ButtonGrab.Foreground =
                 new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 255, 255));
         }
 
+        private void Button_Grab_OnClick(object sender, RoutedEventArgs e)
+        {
+            string selectedNetwork = (string)NetworkComboBox.SelectedItem;
+            if (selectedNetwork != null)
+            {
+                TextBoxPassword.Text = Show_wifi_password(selectedNetwork);
+            }
+        }
+        
+        private void ShowAdvanced(object sender, RoutedEventArgs e)
+        {
+            string selectedNetwork = (string)NetworkComboBox.SelectedItem;
+
+            if (selectedNetwork != null)
+            {
+                MessageBox.Show(show_wifi(selectedNetwork), "Advanced show");
+            }
+        }
 
         private void LoadDetectedNetworks()
         {
@@ -124,16 +140,16 @@ namespace WifiGrabberGRAPHIC
 
             string[] lines = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int a = 0;
-            string[] sieci = new string[lines.Length];
+            string[] networks = new string[lines.Length];
 
             foreach (string line in lines)
             {
                 if (line.Contains("All User Profile"))
                 {
                     a++;
-                    string linia_1 = line.Replace("All User Profile     : ", "");
-                    string linia_2 = linia_1.Substring(4);
-                    sieci[a] = linia_2;
+                    string line1 = line.Replace("All User Profile     : ", "");
+                    string line2 = line1.Substring(4);
+                    networks[a] = line2;
                 }
             }
 
@@ -141,28 +157,17 @@ namespace WifiGrabberGRAPHIC
             {
                 for (int i = 1; i <= a; i++)
                 {
-                    NetworkComboBox.Items.Add(sieci[i]);
+                    NetworkComboBox.Items.Add(networks[i]);
                 }
             }
         }
 
-
-        private void Button_Grab_OnClick(object sender, RoutedEventArgs e)
-        {
-            string selectedNetwork = (string)NetworkComboBox.SelectedItem;
-            if (selectedNetwork != null)
-            {
-                TextBoxPassword.Text = Show_wifi_password(selectedNetwork);
-            }
-        }
-
-
-        static string Show_wifi_password(string wifi_name)
+        static string Show_wifi_password(string wifiName)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = "netsh",
-                Arguments = "wlan show profile name=\"" + wifi_name + "\" key=clear",
+                Arguments = "wlan show profile name=\"" + wifiName + "\" key=clear",
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
@@ -179,24 +184,41 @@ namespace WifiGrabberGRAPHIC
 
             string[] lines = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             int a = 0;
-            string[] sieci = new string[lines.Length];
+            string[] network = new string[lines.Length];
 
             foreach (string line in lines)
             {
                 if (line.Contains("    Key Content            : "))
                 {
                     a++;
-                    string linia_1 = line.Replace("    Key Content            : ", "");
-                    sieci[0] = linia_1;
+                    string line1 = line.Replace("    Key Content            : ", "");
+                    network[0] = line1;
                 }
             }
 
-            return sieci[0];
+            return network[0];
         }
 
-        private void ShowAdvanced(object sender, RoutedEventArgs e)
+        static string show_wifi(string wifiName)
         {
-            MessageBox.Show("Soon feature");
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "netsh",
+                Arguments = "wlan show profile name=\"" + wifiName + "\" key=clear",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            Process process = new Process
+            {
+                StartInfo = startInfo
+            };
+
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            return output;
         }
     }
 }
