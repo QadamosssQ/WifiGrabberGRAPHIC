@@ -410,7 +410,6 @@
                    FontFamily="RobotoMono-Regular"
                    VerticalContentAlignment="Center">
             </Label>
-
         </Grid>
     </Grid>
 </Window>
