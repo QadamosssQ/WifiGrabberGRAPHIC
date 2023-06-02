@@ -270,6 +270,5 @@ namespace WifiGrabberGRAPHIC
             process.WaitForExit();
             return output;
         }
-        
     }
 }
