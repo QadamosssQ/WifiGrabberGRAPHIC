@@ -111,12 +111,61 @@ namespace WifiGrabberGRAPHIC
         private void ShowAdvanced(object sender, RoutedEventArgs e)
         {
             string selectedNetwork = (string)NetworkComboBox.SelectedItem;
+            GridPageMain.Visibility = Visibility.Hidden;
+                
+            GridPageAdvanced.Visibility = Visibility.Visible;
 
             if (selectedNetwork != null)
             {
-                MessageBox.Show(show_wifi(selectedNetwork), "Advanced show");
-                GridPageMain.Visibility = Visibility.Hidden;
+                
+                Button_Grab_OnClick(sender, e);
+                
+                string output = show_wifi(selectedNetwork);
+                
+                string[] lines = output.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                int a = 0;
+                string[] network = new string[lines.Length];
+
+                foreach (string line in lines)
+                {
+                    if (line.Contains("    Name                   : "))
+                    {
+                        a++;
+                        string line1 = line.Replace("    Name                   : ", "");
+                        network[0] = line1;
+                    }
+                    if (line.Contains("    Authentication         : "))
+                    {
+                        string line1 = line.Replace("    Authentication         : ", "");
+                        network[1] = line1;
+                    }
+                    if (line.Contains("    Key Content            : "))
+                    {
+                        string line1 = line.Replace("    Key Content            : ", "");
+                        network[2] = line1;
+                    }
+                    if (line.Contains("        MAC Randomization  : "))
+                    {
+                        string line1 = line.Replace("        MAC Randomization  : ", "");
+                        network[3] = line1;
+                    }
+                    
+                }
+
+                TextBoxSsid.Text = network[0];
+                TextBoxSecurity.Text = network[1];
+                TextBoxPassword2.Text = network[2];
+                TextBoxMacType.Text = network[3];
+                
             }
+        }
+        
+        private void BackToMain(object sender, RoutedEventArgs e)
+        {
+            GridPageMain.Visibility = Visibility.Visible;
+                
+            GridPageAdvanced.Visibility = Visibility.Hidden;
+            
         }
 
         private void LoadDetectedNetworks()
@@ -221,5 +270,6 @@ namespace WifiGrabberGRAPHIC
             process.WaitForExit();
             return output;
         }
+        
     }
 }
