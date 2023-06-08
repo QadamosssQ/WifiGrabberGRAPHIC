@@ -1,4 +1,4 @@
-# WiFi_passwords_grabber (Graphic edition)
+# WiFiGrabberGRAPHIC
 Welcome to the WiFi Passwords Grabber, now with an enhanced graphical layout built using WPF.
 
 > This program allows you to conveniently view passwords for all the WiFi networks previously connected to your computer. If your device lacks a WiFi card, the program will not display any information.
